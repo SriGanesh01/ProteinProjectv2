@@ -1,3 +1,4 @@
+//#include <windows.h>
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
@@ -5,13 +6,14 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 #include <iostream>
+#include <cmath>
 #include <string>
 #include <fstream>
 #include <sstream>
 
 
 #include "main_imgui.h"
-
+#include "OpenGLDebugger.h"
 
 static std::string ParseShader(const std::string filepath)
 {
@@ -21,13 +23,15 @@ static std::string ParseShader(const std::string filepath)
     return srcCode.str();
 }
 
-int WinMain()
+//int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
+int main()
 {
     // Initialize GLFW
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // Debugger from Learn OpenGL
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // GLFW Create Window
@@ -49,6 +53,9 @@ int WinMain()
         return -1;
     }
 
+    // Adding the Debugger from Learn OpenGL
+    //EnableOpenGLDebugging();
+
     // Initialize IMGUI
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -67,7 +74,6 @@ int WinMain()
 
     // Data
     float Tvertices[] = {
-        // Outer triangle
         /*-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
          0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,
          0.0f,  0.5f * float(sqrt(3)) * 2 / 3, 0.0f,
@@ -130,6 +136,16 @@ int WinMain()
     glShaderSource(fragmentShader, 1, &fragmentShaderSourceCharPointer, NULL);
     glCompileShader(fragmentShader);
 
+    // Error Check (Default Code)
+    int success;
+    char infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
+    // End of Error Check (Default Code) Code
+
     // Create Program and tell it to use the shaders
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
@@ -176,7 +192,7 @@ int WinMain()
         glBindVertexArray(VAO); // Bind here instead of outside if vertex changes often. Bind at both places. Better Practice
         glUseProgram(shaderProgram);
         //glDrawArrays(GL_TRIANGLES, 0, 3);
-        glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 
 

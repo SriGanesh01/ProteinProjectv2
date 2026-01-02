@@ -24,10 +24,13 @@
     <ClCompile Include="ProteinProjectv2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="main_imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_imgui.cpp">
+    <ClCompile Include="OpenGLDebugger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,6 +42,9 @@
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
     <ClInclude Include="main_imgui.h">
+      <Filter>Header Files %28Remaining%29</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGLDebugger.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
   </ItemGroup>
