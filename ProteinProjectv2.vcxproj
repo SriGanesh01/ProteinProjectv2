@@ -141,14 +141,18 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="main_imgui.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="OpenGLDebugger.cpp" />
     <ClCompile Include="ProteinProjectv2.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllCustomHeader.h" />
     <ClInclude Include="AllExternalHeader.h" />
     <ClInclude Include="main_imgui.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="OpenGLDebugger.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ShaderFragment.frag" />
