@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main_imgui.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="AllCustomHeader.h" />
     <ClInclude Include="AllExternalHeader.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="main_imgui.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="OpenGLDebugger.h" />
