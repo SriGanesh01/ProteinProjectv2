@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -18,6 +19,7 @@
 #include "OpenGLDebugger.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "Camera.h"
 
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
@@ -73,7 +75,7 @@ int main()
     glEnable(GL_PROGRAM_POINT_SIZE);
 
     // Data
-    float Tvertices[] = {
+    std::vector<float> Tvertices = {
         /*
         // -------- QUAD (OLD DATA) --------
          0.5f,  0.5f,  0.0f,
@@ -93,7 +95,7 @@ int main()
          0.0f, 0.8f,  0.0f    // 4
     };
 
-    unsigned int Tindices[] = {
+    std::vector<unsigned int> Tindices = {
         /*
         // -------- QUAD (OLD INDICES) --------
         0, 1, 2,
@@ -112,6 +114,33 @@ int main()
         3, 0, 4
     };
 
+    // -------- PYRAMID VARIANT (SHORTER, WIDER) --------
+
+    std::vector<float> bVertices = {
+        // Base (rectangle) - Positioned at Y = 1.5
+        // X      Y      Z
+        2.0f,  1.5f,  2.0f,   // 0: Back-Left
+        5.0f,  1.5f,  2.0f,   // 1: Back-Right
+        5.0f,  1.5f,  4.0f,   // 2: Front-Right
+        2.0f,  1.5f,  4.0f,   // 3: Front-Left
+
+        // Apex (Pointed top) - Positioned higher at Y = 5.0
+        3.5f,  5.0f,  3.0f    // 4: Top Center
+    };
+
+    std::vector<unsigned int> bIndices = {
+        // Base
+        0, 1, 2,
+        0, 2, 3,
+
+        // Sides
+        0, 1, 4,
+        1, 2, 4,
+        2, 3, 4,
+        3, 0, 4
+    };
+
+
 
     glClearColor(0.45f, 0.55f, 0.60f, 1.00f); // Better to do twice (In and Out)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
@@ -119,13 +148,17 @@ int main()
     
 
     
-    Mesh myMesh(Tvertices, sizeof(Tvertices), Tindices, sizeof(Tindices));
+    Mesh myMesh(Tvertices, Tindices);
+    Mesh myMesh2(bVertices, bIndices);
     Shader myShader("./ShaderVertex.vert", "./ShaderFragment.frag");
+    Camera myCamera;
+    
+    
 
 
     
-    float rotation = 0.0f;
-    double prevTime = glfwGetTime();
+    /*float rotation = 0.0f;
+    double prevTime = glfwGetTime();*/
 
     while (!glfwWindowShouldClose(window))
     {
@@ -134,7 +167,9 @@ int main()
         // Resizing
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
-        glViewport(0, 0, Swidth, Sheight);
+        glViewport(0, 0, display_w, display_h);
+
+
 
         // Background Color
         glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
@@ -153,34 +188,15 @@ int main()
 
         DrawImGuiPanels();
 
+        myShader.use();
 
         // OpenGl Drawings
 
-        double crntTime = glfwGetTime();
-        if (crntTime - prevTime >= 1 / 60) {
-            rotation += 0.5f;
-            prevTime - crntTime;
-        }
+        myCamera.Use(display_w, display_h, myShader);
 
-        
-        myShader.use();
-
-        glm::mat4 model1 = glm::mat4(1.0f);
-        glm::mat4 view1 = glm::mat4(1.0f);
-        glm::mat4 proj1 = glm::mat4(1.0f);
-
-        model1 = glm::rotate(model1, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-        view1 = glm::translate(view1, glm::vec3(0.0f, 0.0f, -5.0f));
-        proj1 = glm::perspective(glm::radians(45.0f), (float)(Swidth / Sheight), 0.1f, 100.0f);
-
-        int modelLoc = glad_glGetUniformLocation(myShader.shaderProgram, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model1));
-        int viewLoc = glad_glGetUniformLocation(myShader.shaderProgram, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view1));
-        int projLoc = glad_glGetUniformLocation(myShader.shaderProgram, "proj");
-        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj1));
 
         myMesh.Draw();
+        myMesh2.Draw();
         //glDrawArrays(GL_TRIANGLES, 0, 3);
         
 
@@ -195,6 +211,7 @@ int main()
 
     // clear OpenGL
     myMesh.Cleanup();
+    myMesh2.Cleanup();
     myShader.cleanup();
 
 

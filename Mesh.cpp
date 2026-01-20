@@ -1,7 +1,7 @@
 #include "Mesh.h"
 
-Mesh::Mesh(float* Tvertices, size_t vertexSize, unsigned int* Tindices, size_t indexSize) {
-    indexCount = indexSize / sizeof(unsigned int);
+Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices) {
+    indexCount = static_cast<int>(Tindices.size());
 
     // Generate and bind VAO
     glGenVertexArrays(1, &VAO);
@@ -10,7 +10,7 @@ Mesh::Mesh(float* Tvertices, size_t vertexSize, unsigned int* Tindices, size_t i
     // Genetate, Bind and add data to VBO
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertexSize, Tvertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, Tvertices.size() * sizeof(float), Tvertices.data(), GL_STATIC_DRAW);
 
     // Tell VBO How to read the data
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
@@ -19,7 +19,7 @@ Mesh::Mesh(float* Tvertices, size_t vertexSize, unsigned int* Tindices, size_t i
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize, Tindices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Tindices.size() * sizeof(unsigned int), Tindices.data(), GL_STATIC_DRAW);
 }
 
 void Mesh::Draw() {
