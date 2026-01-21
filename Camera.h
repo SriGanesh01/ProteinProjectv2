@@ -16,8 +16,11 @@ public:
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 
+	float movementX = 0.0f;
+	float movementZ = 0.0f;
+
 	void Use(int display_w, int display_h, Shader myShader);
-	void GetMovementInput(GLFWwindow* window, int key, int scancode, int action, int mods);
+	static void GetMovementInput(GLFWwindow* window, int key, int scancode, int action, int mods);
 private:
 
 };

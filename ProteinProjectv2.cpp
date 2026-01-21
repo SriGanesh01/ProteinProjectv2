@@ -31,6 +31,7 @@ int main()
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_SAMPLES, 8); // Need to change when i add FBO (Frame Buffer Objects)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE); // Debugger from Learn OpenGL
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -55,6 +56,7 @@ int main()
     }
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
     // Adding the Debugger from Learn OpenGL
     //EnableOpenGLDebugging();
 
@@ -152,8 +154,10 @@ int main()
     Mesh myMesh2(bVertices, bIndices);
     Shader myShader("./ShaderVertex.vert", "./ShaderFragment.frag");
     Camera myCamera;
+    glfwSetWindowUserPointer(window, &myCamera);
     
-    
+    glfwSetKeyCallback(window, &myCamera.GetMovementInput);
+
 
 
     
@@ -163,7 +167,6 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
-        glfwSetKeyCallback(window, myCamera.GetMovementInput());
 
         // Resizing
         int display_w, display_h;
