@@ -1,6 +1,18 @@
 
 #include "Camera.h"
 
+void Camera::GetMovementInput(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_A && action == GLFW_PRESS)
+        std::cout << "Left" << std::endl;
+    if (key == GLFW_KEY_S && action == GLFW_PRESS)
+        std::cout << "Back" << std::endl;
+    if (key == GLFW_KEY_W && action == GLFW_PRESS)
+        std::cout << "Front" << std::endl;
+    if (key == GLFW_KEY_D && action == GLFW_PRESS)
+        std::cout << "Right" << std::endl;
+}
+
 void Camera::Use(int display_w, int display_h, Shader myShader) {
 
     

@@ -163,6 +163,7 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
+        glfwSetKeyCallback(window, myCamera.GetMovementInput());
 
         // Resizing
         int display_w, display_h;
