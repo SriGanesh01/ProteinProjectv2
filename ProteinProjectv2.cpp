@@ -156,7 +156,10 @@ int main()
     Camera myCamera;
     glfwSetWindowUserPointer(window, &myCamera);
     
-    glfwSetKeyCallback(window, &myCamera.GetMovementInput);
+    //glfwSetKeyCallback(window, &myCamera.GetMovementInput);
+    //myCamera.GetMovementInput(window);
+
+    
 
 
 
@@ -195,6 +198,13 @@ int main()
         myShader.use();
 
         // OpenGl Drawings
+
+        static float lastFrame = 0.0f;
+        float currentFrame = glfwGetTime();
+        float deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        myCamera.GetMovementInput(window, deltaTime);
 
         myCamera.Use(display_w, display_h, myShader);
 
