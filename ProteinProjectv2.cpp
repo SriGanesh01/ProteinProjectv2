@@ -48,6 +48,16 @@ int main()
     }
     glfwMakeContextCurrent(window);
 
+
+
+
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+
+
+
+
+
     // Initialize GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -205,6 +215,7 @@ int main()
         lastFrame = currentFrame;
 
         myCamera.GetMovementInput(window, deltaTime);
+        myCamera.GetMouseInput(window);
 
         myCamera.Use(display_w, display_h, myShader);
 

@@ -5,16 +5,39 @@ void Camera::GetMovementInput(GLFWwindow* window, float deltaTime) // , int key,
 {
     //Camera* TestCam = (Camera*)glfwGetWindowUserPointer(window);
 
-    speed = 1.2f * deltaTime;
+    speed = 1.2f;
+    velocity = speed * deltaTime;
 
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        movementX += speed;
+    glm::vec3 right = glm::cross(forward, up);
+
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        movementZ -= speed;
+        position -= forward * velocity;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        position -= right * velocity;
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        movementZ += speed;
+        position += forward * velocity;
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        movementX -= speed;
+        position += right * velocity;
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        position += up * velocity;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+        position -= up * velocity;   
+}
+
+void Camera::GetMouseInput(GLFWwindow* window)
+{
+    double xPos, yPos;
+
+    glfwGetCursorPos(window, &xPos, &yPos);
+
+    glm::vec3 direction;
+    direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+    direction.y = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+    direction.z = sin(glm::radians(pitch));
+    forward = glm::normalize(direction);
+
+
+
 }
 
 void Camera::Use(int display_w, int display_h, Shader myShader) {
@@ -33,8 +56,10 @@ void Camera::Use(int display_w, int display_h, Shader myShader) {
 
     //model1 = glm::rotate(model1, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
     //view2 = glm::rotate(view2, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-    view1 = glm::translate(view1, glm::vec3(movementX, 0.0f, movementZ));
+    //view1 = glm::translate(view1, glm::vec3(movementX, movementY, movementZ));
     //view1 = glm::translate(view1, glm::vec3(0.0f, 0.0f, ));
+
+    view1 = glm::lookAt(position, position + forward, up);
     proj1 = glm::perspective(glm::radians(45.0f), (float)display_w / (float)display_h, 0.1f, 100.0f);
 
     int modelLoc = glad_glGetUniformLocation(myShader.shaderProgram, "model");
