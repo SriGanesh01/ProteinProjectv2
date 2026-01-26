@@ -215,7 +215,7 @@ int main()
         lastFrame = currentFrame;
 
         myCamera.GetMovementInput(window, deltaTime);
-        myCamera.GetMouseInput(window);
+        myCamera.GetMouseInput(window, display_w, display_h);
 
         myCamera.Use(display_w, display_h, myShader);
 

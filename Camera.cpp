@@ -8,6 +8,12 @@ void Camera::GetMovementInput(GLFWwindow* window, float deltaTime) // , int key,
     speed = 1.2f;
     velocity = speed * deltaTime;
 
+    glm::vec3 direction;
+    direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+    direction.y = sin(glm::radians(pitch));
+    direction.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+    forward = glm::normalize(direction);
+
     glm::vec3 right = glm::cross(forward, up);
 
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -24,20 +30,35 @@ void Camera::GetMovementInput(GLFWwindow* window, float deltaTime) // , int key,
         position -= up * velocity;   
 }
 
-void Camera::GetMouseInput(GLFWwindow* window)
+void Camera::GetMouseInput(GLFWwindow* window, float width, float height)
 {
     double xPos, yPos;
 
     glfwGetCursorPos(window, &xPos, &yPos);
 
-    glm::vec3 direction;
-    direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-    direction.y = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-    direction.z = sin(glm::radians(pitch));
-    forward = glm::normalize(direction);
+    /*float xLast = width /2;
+    float yLast = height /2;*/
+    if (firstMouse)
+    {
+        xLast = xPos;
+        yLast = yPos;
+        firstMouse = false;
+    }
+
+    float xOffset = xPos - xLast;
+    float yOffset = yLast - yPos;
+
+    xLast = xPos;
+    yLast = yPos;
+
+    xOffset *= sensitivity;
+    yOffset *= sensitivity;
 
 
+    yaw += xOffset;
+    pitch += yOffset;
 
+    pitch = glm::clamp(pitch, -89.0f, 89.0f);
 }
 
 void Camera::Use(int display_w, int display_h, Shader myShader) {
