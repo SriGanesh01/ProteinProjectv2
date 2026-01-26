@@ -29,8 +29,8 @@ public:
 	float pitch = 0.0f;
 	float sensitivity = 0.1f;
 
-	float xLast = 500.0f;
-	float yLast = 400.0f;
+	float xLast = 0.0f;
+	float yLast = 0.0f;
 
 	float speed;
 	float velocity;

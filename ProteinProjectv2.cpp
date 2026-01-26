@@ -24,6 +24,8 @@
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
 
+static bool mouseCaptured = false;
+
 //int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 int main()
 {
@@ -38,7 +40,7 @@ int main()
 
     // GLFW Create Window
     glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE); // start maximized
-    GLFWwindow* window = glfwCreateWindow(Swidth, Sheight, "My Title", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(Swidth, Sheight, "Protein Statement", NULL, NULL);
     //GLFWwindow* window = glfwCreateWindow(640, 480, "My Title", NULL, NULL);
     if (window == NULL)
     {
@@ -51,7 +53,7 @@ int main()
 
 
 
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
 
@@ -181,6 +183,8 @@ int main()
     {
         glfwPollEvents();
 
+        ImGuiIO& io = ImGui::GetIO();
+
         // Resizing
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -214,8 +218,30 @@ int main()
         float deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        myCamera.GetMovementInput(window, deltaTime);
-        myCamera.GetMouseInput(window, display_w, display_h);
+        if (!io.WantCaptureKeyboard)
+        {
+            myCamera.GetMovementInput(window, deltaTime);
+        }
+
+        if (!io.WantCaptureMouse)
+        {
+            if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+            {
+                if (!mouseCaptured)
+                {
+                    mouseCaptured = true;
+                    myCamera.firstMouse = true;
+                    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+                }
+                myCamera.GetMouseInput(window, display_w, display_h);
+            }
+            else
+            {
+                mouseCaptured = false;
+                glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            }
+        }
+        
 
         myCamera.Use(display_w, display_h, myShader);
 

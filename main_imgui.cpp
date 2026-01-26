@@ -16,6 +16,10 @@ void DrawImGuiPanels()
         ImGui::Text("Hello, World!");
         ImGui::Text("This is some useful text.");
 
+        static ImVec4 color = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+
+        ImGui::ColorPicker4("Protein Color", (float*)&color);
+
     }
     ImGui::End();
 
