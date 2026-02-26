@@ -15,11 +15,13 @@
 
 
 
-#include "main_imgui.h"
-#include "OpenGLDebugger.h"
-#include "Shader.h"
-#include "Mesh.h"
-#include "Camera.h"
+#include "../HeaderFiles/main_imgui.h"
+#include "../HeaderFiles/OpenGLDebugger.h"
+#include "../HeaderFiles/Shader.h"
+#include "../HeaderFiles/Mesh.h"
+#include "../HeaderFiles/Camera.h"
+#include "../HeaderFiles/SphereMeshGenerator.h"
+#include "../HeaderFiles/CylinderMeshGenerator.h"
 
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
@@ -88,83 +90,17 @@ int main()
 
     glEnable(GL_PROGRAM_POINT_SIZE);
 
-    // Data
-    std::vector<float> Tvertices = {
-        /*
-        // -------- QUAD (OLD DATA) --------
-         0.5f,  0.5f,  0.0f,
-        -0.5f,  0.5f,  0.0f,
-        -0.5f, -0.5f,  0.0f,
-         0.5f, -0.5f,  0.0f
-        */
-
-        // -------- PYRAMID (NEW DATA) --------
-        // Base (square)
-        -0.5f, 0.0f, -0.5f,   // 0
-         0.5f, 0.0f, -0.5f,   // 1
-         0.5f, 0.0f,  0.5f,   // 2
-        -0.5f, 0.0f,  0.5f,   // 3
-
-        // Apex (top)
-         0.0f, 0.8f,  0.0f    // 4
-    };
-
-    std::vector<unsigned int> Tindices = {
-        /*
-        // -------- QUAD (OLD INDICES) --------
-        0, 1, 2,
-        0, 2, 3
-        */
-
-        // -------- PYRAMID (NEW INDICES) --------
-        // Base
-        0, 1, 2,
-        0, 2, 3,
-
-        // Sides
-        0, 1, 4,
-        1, 2, 4,
-        2, 3, 4,
-        3, 0, 4
-    };
-
-    // -------- PYRAMID VARIANT (SHORTER, WIDER) --------
-
-    std::vector<float> bVertices = {
-        // Base (rectangle) - Positioned at Y = 1.5
-        // X      Y      Z
-        2.0f,  1.5f,  2.0f,   // 0: Back-Left
-        5.0f,  1.5f,  2.0f,   // 1: Back-Right
-        5.0f,  1.5f,  4.0f,   // 2: Front-Right
-        2.0f,  1.5f,  4.0f,   // 3: Front-Left
-
-        // Apex (Pointed top) - Positioned higher at Y = 5.0
-        3.5f,  5.0f,  3.0f    // 4: Top Center
-    };
-
-    std::vector<unsigned int> bIndices = {
-        // Base
-        0, 1, 2,
-        0, 2, 3,
-
-        // Sides
-        0, 1, 4,
-        1, 2, 4,
-        2, 3, 4,
-        3, 0, 4
-    };
-
-
 
     glClearColor(0.45f, 0.55f, 0.60f, 1.00f); // Better to do twice (In and Out)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
     
 
-    
-    Mesh myMesh(Tvertices, Tindices);
-    Mesh myMesh2(bVertices, bIndices);
-    Shader myShader("./ShaderVertex.vert", "./ShaderFragment.frag");
+    GenerateSphereValues gsv;
+    GenerateCylinderValues gcv;
+    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices);
+    Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
+    Shader myShader("ShaderFiles/ShaderVertex.vert", "ShaderFiles/ShaderFragment.frag");
     Camera myCamera;
     glfwSetWindowUserPointer(window, &myCamera);
     

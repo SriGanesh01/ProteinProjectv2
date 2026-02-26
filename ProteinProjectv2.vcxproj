@@ -139,26 +139,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="SourceFiles\Camera.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="main_imgui.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="OpenGLDebugger.cpp" />
-    <ClCompile Include="ProteinProjectv2.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SourceFiles\CylinderMeshGenerator.cpp" />
+    <ClCompile Include="SourceFiles\main_imgui.cpp" />
+    <ClCompile Include="SourceFiles\Mesh.cpp" />
+    <ClCompile Include="SourceFiles\OpenGLDebugger.cpp" />
+    <ClCompile Include="SourceFiles\ProteinProjectv2.cpp" />
+    <ClCompile Include="SourceFiles\Shader.cpp" />
+    <ClCompile Include="SourceFiles\SphereMeshGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllCustomHeader.h" />
-    <ClInclude Include="AllExternalHeader.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="main_imgui.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="OpenGLDebugger.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="HeaderFiles\AllCustomHeader.h" />
+    <ClInclude Include="HeaderFiles\AllExternalHeader.h" />
+    <ClInclude Include="HeaderFiles\Camera.h" />
+    <ClInclude Include="HeaderFiles\CylinderMeshGenerator.h" />
+    <ClInclude Include="HeaderFiles\main_imgui.h" />
+    <ClInclude Include="HeaderFiles\Mesh.h" />
+    <ClInclude Include="HeaderFiles\OpenGLDebugger.h" />
+    <ClInclude Include="HeaderFiles\Shader.h" />
+    <ClInclude Include="HeaderFiles\SphereMeshGenerator.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderFragment.frag" />
-    <None Include="ShaderVertex.vert" />
+    <None Include="ShaderFiles\ShaderFragment.frag" />
+    <None Include="ShaderFiles\ShaderVertex.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

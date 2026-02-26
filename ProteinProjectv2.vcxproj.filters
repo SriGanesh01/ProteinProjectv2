@@ -21,56 +21,68 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProteinProjectv2.cpp">
+    <ClCompile Include="SourceFiles\ProteinProjectv2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main_imgui.cpp">
+    <ClCompile Include="SourceFiles\main_imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OpenGLDebugger.cpp">
+    <ClCompile Include="SourceFiles\OpenGLDebugger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="SourceFiles\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
+    <ClCompile Include="SourceFiles\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="SourceFiles\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\SphereMeshGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFiles\CylinderMeshGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllExternalHeader.h">
+    <ClInclude Include="HeaderFiles\AllExternalHeader.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="AllCustomHeader.h">
+    <ClInclude Include="HeaderFiles\AllCustomHeader.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="main_imgui.h">
+    <ClInclude Include="HeaderFiles\main_imgui.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="OpenGLDebugger.h">
+    <ClInclude Include="HeaderFiles\OpenGLDebugger.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="HeaderFiles\Shader.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="HeaderFiles\Mesh.h">
       <Filter>Header Files %28Remaining%29</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="HeaderFiles\Camera.h">
       <Filter>Header Files %28Remaining%29</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\SphereMeshGenerator.h">
+      <Filter>Header Files %28Default%29</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderFiles\CylinderMeshGenerator.h">
+      <Filter>Header Files %28Default%29</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderVertex.vert">
+    <None Include="ShaderFiles\ShaderVertex.vert">
       <Filter>Shader Files</Filter>
     </None>
-    <None Include="ShaderFragment.frag">
+    <None Include="ShaderFiles\ShaderFragment.frag">
       <Filter>Shader Files</Filter>
     </None>
   </ItemGroup>

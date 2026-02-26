@@ -1,5 +1,5 @@
 
-#include "Camera.h"
+#include "../HeaderFiles/Camera.h"
 
 void Camera::GetMovementInput(GLFWwindow* window, float deltaTime) // , int key, int scancode, int action, int mods
 {
@@ -77,7 +77,7 @@ void Camera::Use(int display_w, int display_h, Shader myShader) {
 
     //model1 = glm::rotate(model1, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
     //view2 = glm::rotate(view2, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-    //view1 = glm::translate(view1, glm::vec3(movementX, movementY, movementZ));
+    //view1 = glm::translate(view1, glm::vec3(6.0f, 5.0f, 1.0f));
     //view1 = glm::translate(view1, glm::vec3(0.0f, 0.0f, ));
 
     view1 = glm::lookAt(position, position + forward, up);

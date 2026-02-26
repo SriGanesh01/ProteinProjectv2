@@ -1,4 +1,4 @@
-#include "Mesh.h"
+#include "../HeaderFiles/Mesh.h"
 
 Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices) {
     indexCount = static_cast<int>(Tindices.size());

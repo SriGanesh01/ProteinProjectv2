@@ -1,4 +1,4 @@
-#include "OpenGLDebugger.h"
+#include "../HeaderFiles/OpenGLDebugger.h"
 #include <iostream>
 #include <glad/glad.h>
 
