@@ -9,24 +9,34 @@
 GenerateSphereValues::GenerateSphereValues()
 {
     float radius = 1.0f;
-    int latitudeCount = 18;
-    int longitudeCount = 36;
+    int latitudeCount = 64;
+    int longitudeCount = 128;
 
     float latitudeStep = (M_PI) / latitudeCount;
     float longitudeStep = (2 *M_PI) / longitudeCount;
 
-    for (int i = 0; i < latitudeCount; i++)
+    for (int i = 0; i <= latitudeCount; i++)
     {
-        float latitudeAnglePhi = M_PI / 2 - i * latitudeStep;
+        /*float latitudeAnglePhi = M_PI / 2 - i * latitudeStep;
 
-        float z = radius * cos(latitudeAnglePhi);
+        float z = radius * cos(latitudeAnglePhi);*/
+        float phi = i * latitudeStep;
+
+        float z = radius * cosf(phi);
         
-        for (int j = 0; j < longitudeCount; j++)
+        for (int j = 0; j <= longitudeCount; j++)
         {
-            float longitudeAngleTheta = j * longitudeStep;
+            /*float longitudeAngleTheta = j * longitudeStep;
             float x = radius * sin(latitudeAnglePhi) * cos(longitudeAngleTheta);
-            float y = radius * sin(latitudeAnglePhi) * sin(longitudeAngleTheta);
+            float y = radius * sin(latitudeAnglePhi) * sin(longitudeAngleTheta);*/
 
+            
+            float theta = j * longitudeStep;
+
+            float x = radius * sinf(phi) * cosf(theta);
+            float y = radius * sinf(phi) * sinf(theta);
+            
+            
             sphereVertices.push_back(x);
             sphereVertices.push_back(y);
             sphereVertices.push_back(z);
