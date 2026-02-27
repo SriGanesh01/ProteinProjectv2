@@ -13,7 +13,7 @@ GenerateSphereValues::GenerateSphereValues()
     int longitudeCount = 128;
 
     float latitudeStep = (M_PI) / latitudeCount;
-    float longitudeStep = (2 *M_PI) / longitudeCount;
+    float longitudeStep = (2 * M_PI) / longitudeCount;
 
     for (int i = 0; i <= latitudeCount; i++)
     {

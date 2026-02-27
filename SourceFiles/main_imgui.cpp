@@ -29,6 +29,13 @@ void DrawImGuiPanels()
 
     }
     ImGui::End();
+
+    if (ImGui::Begin("Performance")) {
+        ImGuiIO& io = ImGui::GetIO();
+        ImGui::Text("FPS: %.1f", io.Framerate);
+        ImGui::Text("Frame Time: %.3f ms", 1000.0f / io.Framerate);
+    }
+    ImGui::End();
 }
 
 
