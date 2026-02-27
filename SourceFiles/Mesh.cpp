@@ -13,8 +13,12 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glBufferData(GL_ARRAY_BUFFER, Tvertices.size() * sizeof(float), Tvertices.data(), GL_STATIC_DRAW);
 
     // Tell VBO How to read the data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    //Color
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);
@@ -24,7 +28,7 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
 
 void Mesh::Draw() {
     glBindVertexArray(VAO); // Bind here instead of outside if vertex changes often. Bind at both places. Better Practice
-    glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, 1000);
+    glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, 1);
 }
 
 void Mesh::Cleanup() {

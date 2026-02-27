@@ -6,13 +6,13 @@ GenerateCylinderValues::GenerateCylinderValues()
 	cylinderVertices = {
         // Base (rectangle) - Positioned at Y = 1.5
         // X      Y      Z
-        2.0f,  1.5f,  2.0f,   // 0: Back-Left
-        5.0f,  1.5f,  2.0f,   // 1: Back-Right
-        5.0f,  1.5f,  4.0f,   // 2: Front-Right
-        2.0f,  1.5f,  4.0f,   // 3: Front-Left
+        2.0f,  1.5f,  2.0f, 0.0f, 1.0f, 0.0f,   // 0: Back-Left
+        5.0f,  1.5f,  2.0f, 1.0f, 0.0f, 0.0f,  // 1: Back-Right
+        5.0f,  1.5f,  4.0f, 0.0f, 0.0f, 1.0f,  // 2: Front-Right
+        2.0f,  1.5f,  4.0f, 0.0f, 1.0f, 0.0f,  // 3: Front-Left
 
         // Apex (Pointed top) - Positioned higher at Y = 5.0
-        3.5f,  5.0f,  3.0f    // 4: Top Center
+        3.5f,  5.0f,  3.0f, 1.0f, 1.0f, 1.0f   // 4: Top Center
 	};
 
 	cylinderIndices = {
