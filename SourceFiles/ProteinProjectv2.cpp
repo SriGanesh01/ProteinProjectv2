@@ -125,6 +125,7 @@ int main()
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
+        //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
 
