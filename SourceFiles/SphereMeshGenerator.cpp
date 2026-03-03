@@ -17,20 +17,12 @@ GenerateSphereValues::GenerateSphereValues()
 
     for (int i = 0; i <= latitudeCount; i++)
     {
-        /*float latitudeAnglePhi = M_PI / 2 - i * latitudeStep;
-
-        float z = radius * cos(latitudeAnglePhi);*/
         float phi = i * latitudeStep;
 
         float z = radius * cosf(phi);
         
         for (int j = 0; j <= longitudeCount; j++)
-        {
-            /*float longitudeAngleTheta = j * longitudeStep;
-            float x = radius * sin(latitudeAnglePhi) * cos(longitudeAngleTheta);
-            float y = radius * sin(latitudeAnglePhi) * sin(longitudeAngleTheta);*/
-
-            
+        {   
             float theta = j * longitudeStep;
 
             float x = radius * sinf(phi) * cosf(theta);
@@ -66,4 +58,3 @@ GenerateSphereValues::GenerateSphereValues()
     }
 
 }
-
