@@ -74,6 +74,8 @@ int main()
     // Adding the Debugger from Learn OpenGL
     //EnableOpenGLDebugging();
 
+    // stuff
+
     // Initialize IMGUI
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
