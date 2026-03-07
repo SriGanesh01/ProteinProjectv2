@@ -74,7 +74,8 @@ int main()
     // Adding the Debugger from Learn OpenGL
     //EnableOpenGLDebugging();
 
-    // stuff
+    glEnable(GL_CULL_FACE);     // Enable culling
+
 
     // Initialize IMGUI
     IMGUI_CHECKVERSION();
@@ -96,12 +97,17 @@ int main()
     glClearColor(0.45f, 0.55f, 0.60f, 1.00f); // Better to do twice (In and Out)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
-    
+    std::vector<glm::vec3> sphereOffsets;
+    for (int x = -50; x < 50; x++) {
+        for (int z = -50; z < 50; z++) {
+            sphereOffsets.push_back(glm::vec3(x * 2.5f, 0.0f, z * 2.5f));
+        }
+    }
 
     GenerateSphereValues gsv;
     GenerateCylinderValues gcv;
-    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices);
-    Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
+    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, sphereOffsets);
+    //Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
     Shader myShader("ShaderFiles/ShaderVertex.vert", "ShaderFiles/ShaderFragment.frag");
     Camera myCamera;
     glfwSetWindowUserPointer(window, &myCamera);
@@ -186,7 +192,7 @@ int main()
 
 
         myMesh.Draw();
-        myMesh2.Draw();
+        //myMesh2.Draw();
         //glDrawArrays(GL_TRIANGLES, 0, 3);
         
 
@@ -201,7 +207,7 @@ int main()
 
     // clear OpenGL
     myMesh.Cleanup();
-    myMesh2.Cleanup();
+    //myMesh2.Cleanup();
     myShader.cleanup();
 
 

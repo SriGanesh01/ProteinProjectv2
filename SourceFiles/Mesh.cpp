@@ -1,7 +1,9 @@
 #include "../HeaderFiles/Mesh.h"
 
-Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices) {
+
+Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices, const std::vector<glm::vec3>& instanceOffsetData) {
     indexCount = static_cast<int>(Tindices.size());
+    instanceCount = static_cast<int>(instanceOffsetData.size());
 
     // Generate and bind VAO
     glGenVertexArrays(1, &VAO);
@@ -20,6 +22,15 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
+    // Instanced VBOs
+    glGenBuffers(1, &instanceVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, instanceOffsetData.size() * sizeof(glm::vec3), instanceOffsetData.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(2);
+    glVertexAttribDivisor(2, 1);
+
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -28,7 +39,7 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
 
 void Mesh::Draw() {
     glBindVertexArray(VAO); // Bind here instead of outside if vertex changes often. Bind at both places. Better Practice
-    glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, 1);
+    glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, instanceCount);
 }
 
 void Mesh::Cleanup() {
