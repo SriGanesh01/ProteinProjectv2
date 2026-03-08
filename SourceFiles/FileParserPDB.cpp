@@ -6,7 +6,7 @@
 
 #include "../HeaderFiles/FileParserPDB.h"
 
-void Parsestuff()
+FileParserPDB::FileParserPDB()
 {
 	std::ifstream ParsedPDBfile("PDBDatas/pdb2c0k.ent");
 	if (!ParsedPDBfile.is_open())
@@ -45,7 +45,7 @@ void Parsestuff()
 			 << " " << xCoord << " " << yCoord << " " << zCoord << " " << occupancy << " " 
 			 << tempFactor << " " << element << " " << charge << std::endl;*/
 
-			//LocationPointsVector.push_back(glm::vec3(xCoord, yCoord, zCoord));
+			FileParserPDB::LocationPointsVectors.push_back(glm::vec3(xCoord, yCoord, zCoord));
 		}
 
 	}

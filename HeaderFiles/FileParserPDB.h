@@ -1,5 +1,11 @@
 #pragma once
 
-void Parsestuff();
 
-//std::vector<glm::vec3> LocationPointsVector;
+
+class FileParserPDB {
+public:
+
+	FileParserPDB();
+	std::vector<glm::vec3> LocationPointsVectors;
+
+};
