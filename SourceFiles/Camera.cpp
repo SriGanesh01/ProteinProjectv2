@@ -5,7 +5,7 @@ void Camera::GetMovementInput(GLFWwindow* window, float deltaTime) // , int key,
 {
     //Camera* TestCam = (Camera*)glfwGetWindowUserPointer(window);
 
-    speed = 1.2f;
+    speed = 12.0f;
     velocity = speed * deltaTime;
 
     glm::vec3 direction;
@@ -81,7 +81,8 @@ void Camera::Use(int display_w, int display_h, Shader myShader) {
     //view1 = glm::translate(view1, glm::vec3(0.0f, 0.0f, ));
 
     view1 = glm::lookAt(position, position + forward, up);
-    proj1 = glm::perspective(glm::radians(45.0f), (float)display_w / (float)display_h, 0.1f, 100.0f);
+    proj1 = glm::perspective(glm::radians(45.0f), (float)display_w / (float)display_h, 0.1f, 1000.0f);
+
 
     int modelLoc = glad_glGetUniformLocation(myShader.shaderProgram, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model1));

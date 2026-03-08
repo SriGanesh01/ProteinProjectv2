@@ -98,13 +98,6 @@ int main()
     glClearColor(0.45f, 0.55f, 0.60f, 1.00f); // Better to do twice (In and Out)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
-    /*std::vector<glm::vec3> sphereOffsets;
-    for (int x = -50; x < 50; x++) {
-        for (int z = -50; z < 50; z++) {
-            sphereOffsets.push_back(glm::vec3(x * 2.5f, 0.0f, z * 2.5f));
-        }
-    }*/
-
     GenerateSphereValues gsv;
     GenerateCylinderValues gcv;
     FileParserPDB fpp;

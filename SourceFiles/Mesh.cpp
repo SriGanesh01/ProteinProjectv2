@@ -15,14 +15,14 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glBufferData(GL_ARRAY_BUFFER, Tvertices.size() * sizeof(float), Tvertices.data(), GL_STATIC_DRAW);
 
     // Tell VBO How to read the data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     //Color
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+    /*glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);*/
 
-    // Instanced VBOs
+    // Instanced position VBOs
     glGenBuffers(1, &instanceVBO);
     glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
     glBufferData(GL_ARRAY_BUFFER, instanceOffsetData.size() * sizeof(glm::vec3), instanceOffsetData.data(), GL_STATIC_DRAW);
@@ -30,6 +30,15 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
     glEnableVertexAttribArray(2);
     glVertexAttribDivisor(2, 1);
+
+    // Instanced Color VBO
+    /*glGenBuffers(1, &instanceVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, instanceOffsetData.size() * sizeof(glm::vec3), instanceOffsetData.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(2);
+    glVertexAttribDivisor(2, 1);*/
 
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);
