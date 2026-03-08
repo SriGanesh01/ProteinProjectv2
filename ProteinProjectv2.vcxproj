@@ -142,6 +142,7 @@
     <ClCompile Include="SourceFiles\Camera.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="SourceFiles\CylinderMeshGenerator.cpp" />
+    <ClCompile Include="SourceFiles\FileParserPDB.cpp" />
     <ClCompile Include="SourceFiles\main_imgui.cpp" />
     <ClCompile Include="SourceFiles\Mesh.cpp" />
     <ClCompile Include="SourceFiles\OpenGLDebugger.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="HeaderFiles\AllExternalHeader.h" />
     <ClInclude Include="HeaderFiles\Camera.h" />
     <ClInclude Include="HeaderFiles\CylinderMeshGenerator.h" />
+    <ClInclude Include="HeaderFiles\FileParserPDB.h" />
     <ClInclude Include="HeaderFiles\main_imgui.h" />
     <ClInclude Include="HeaderFiles\Mesh.h" />
     <ClInclude Include="HeaderFiles\OpenGLDebugger.h" />
@@ -161,6 +163,10 @@
     <ClInclude Include="HeaderFiles\SphereMeshGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895.zip" />
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb.gz" />
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb\pdb2c0k.ent" />
+    <None Include="PDBDatas\pdb2c0k.ent" />
     <None Include="ShaderFiles\ShaderFragment.frag" />
     <None Include="ShaderFiles\ShaderVertex.vert" />
   </ItemGroup>

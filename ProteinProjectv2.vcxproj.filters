@@ -48,6 +48,9 @@
     <ClCompile Include="SourceFiles\CylinderMeshGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\FileParserPDB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\AllExternalHeader.h">
@@ -77,6 +80,9 @@
     <ClInclude Include="HeaderFiles\CylinderMeshGenerator.h">
       <Filter>Header Files %28Default%29</Filter>
     </ClInclude>
+    <ClInclude Include="HeaderFiles\FileParserPDB.h">
+      <Filter>Header Files %28Default%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ShaderFiles\ShaderVertex.vert">
@@ -85,5 +91,9 @@
     <None Include="ShaderFiles\ShaderFragment.frag">
       <Filter>Shader Files</Filter>
     </None>
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895.zip" />
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb.gz" />
+    <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb\pdb2c0k.ent" />
+    <None Include="PDBDatas\pdb2c0k.ent" />
   </ItemGroup>
 </Project>

@@ -22,6 +22,7 @@
 #include "../HeaderFiles/Camera.h"
 #include "../HeaderFiles/SphereMeshGenerator.h"
 #include "../HeaderFiles/CylinderMeshGenerator.h"
+#include "../HeaderFiles/FileParserPDB.h"
 
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
@@ -117,7 +118,7 @@ int main()
 
     
 
-
+    Parsestuff();
 
     
     /*float rotation = 0.0f;
