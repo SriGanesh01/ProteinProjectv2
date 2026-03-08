@@ -95,14 +95,14 @@ int main()
     glEnable(GL_PROGRAM_POINT_SIZE);
 
 
-    glClearColor(0.45f, 0.55f, 0.60f, 1.00f); // Better to do twice (In and Out)
+    glClearColor(0.1f, 0.1f, 0.12f, 1.0f); // Better to do twice (In and Out)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
     GenerateSphereValues gsv;
     GenerateCylinderValues gcv;
     FileParserPDB fpp;
 
-    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors);
+    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector);
     //Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
     Shader myShader("ShaderFiles/ShaderVertex.vert", "ShaderFiles/ShaderFragment.frag");
     Camera myCamera;
@@ -134,7 +134,7 @@ int main()
 
 
         // Background Color
-        glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
+        glClearColor(0.1f, 0.1f, 0.12f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // IMGUI

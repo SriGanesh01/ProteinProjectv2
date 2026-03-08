@@ -16,6 +16,21 @@ FileParserPDB::FileParserPDB()
 	}
 	std::string EachLine;
 
+	ColorLookup = {
+		{"H", {1.0f, 1.0f, 1.0f}},
+		{"C", {0.5f, 0.5f, 0.5f}},
+		{"N", {0.0f, 0.0f, 1.0f}},
+		{"O", {1.0f, 0.0f, 0.0f}},
+		{"S", {1.0f, 1.0f, 0.0f}},
+		{"P", {1.0f, 0.5f, 0.0f}},
+		{"F", {0.0f, 0.8f, 0.0f}},
+		{"CL", {0.0f, 0.8f, 0.0f}},
+		{"BR", {0.6f, 0.13f, 0.0f}},
+		{"I", {0.58f, 0.0f, 0.83f}}
+	};
+
+	//std::cout << ColorLookup["J"].x << std::endl;
+
 	while (std::getline(ParsedPDBfile, EachLine))
 	{
 		std::string record = EachLine.substr(0, 6);
@@ -40,12 +55,29 @@ FileParserPDB::FileParserPDB()
 			std::string element = EachLine.substr(76, 2);
 			std::string charge = EachLine.substr(78, 2);
 
-			/* std::cout << record << " " << serial << " " << atomName << " " << altLoc << " " 
+			 /*std::cout << record << " " << serial << " " << atomName << " " << altLoc << " " 
 			 << residueName << " " << chainID << " " << residueSeq << " " << insertionCode 
 			 << " " << xCoord << " " << yCoord << " " << zCoord << " " << occupancy << " " 
 			 << tempFactor << " " << element << " " << charge << std::endl;*/
 
+			element.erase(remove(element.begin(), element.end(), ' '), element.end());
+
+			auto it = ColorLookup.find(element);
+
+			if (it != ColorLookup.end())
+			{
+				FileParserPDB::ColorPointsVector.push_back(glm::vec3(it->second));
+			}
+			else
+			{
+				FileParserPDB::ColorPointsVector.push_back(glm::vec3(1.0f, 0.2f, 0.8f));
+			}
+
+			
+
 			FileParserPDB::LocationPointsVectors.push_back(glm::vec3(xCoord, yCoord, zCoord));
+
+			
 		}
 
 	}

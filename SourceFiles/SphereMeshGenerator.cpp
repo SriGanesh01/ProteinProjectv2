@@ -32,10 +32,6 @@ GenerateSphereValues::GenerateSphereValues()
             sphereVertices.push_back(x);
             sphereVertices.push_back(y);
             sphereVertices.push_back(z);
-
-            /*sphereVertices.push_back(0);
-            sphereVertices.push_back(0);
-            sphereVertices.push_back(0);*/
         }
     }
 

@@ -1,7 +1,7 @@
 #include "../HeaderFiles/Mesh.h"
 
 
-Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices, const std::vector<glm::vec3>& instanceOffsetData) {
+Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices, const std::vector<glm::vec3>& instanceOffsetData, const std::vector<glm::vec3>& instanceColorData) {
     indexCount = static_cast<int>(Tindices.size());
     instanceCount = static_cast<int>(instanceOffsetData.size());
 
@@ -23,8 +23,8 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glEnableVertexAttribArray(1);*/
 
     // Instanced position VBOs
-    glGenBuffers(1, &instanceVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glGenBuffers(1, &instancePositionVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instancePositionVBO);
     glBufferData(GL_ARRAY_BUFFER, instanceOffsetData.size() * sizeof(glm::vec3), instanceOffsetData.data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
@@ -32,13 +32,13 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glVertexAttribDivisor(2, 1);
 
     // Instanced Color VBO
-    /*glGenBuffers(1, &instanceVBO);
-    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
-    glBufferData(GL_ARRAY_BUFFER, instanceOffsetData.size() * sizeof(glm::vec3), instanceOffsetData.data(), GL_STATIC_DRAW);
+    glGenBuffers(1, &instancedColorVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instancedColorVBO);
+    glBufferData(GL_ARRAY_BUFFER, instanceColorData.size() * sizeof(glm::vec3), instanceColorData.data(), GL_STATIC_DRAW);
 
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
-    glEnableVertexAttribArray(2);
-    glVertexAttribDivisor(2, 1);*/
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+    glEnableVertexAttribArray(3);
+    glVertexAttribDivisor(3, 1);
 
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);
