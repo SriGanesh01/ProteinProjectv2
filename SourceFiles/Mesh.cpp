@@ -1,7 +1,7 @@
 #include "../HeaderFiles/Mesh.h"
 
 
-Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices, const std::vector<glm::vec3>& instanceOffsetData, const std::vector<glm::vec3>& instanceColorData) {
+Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>& Tindices, const std::vector<glm::vec3>& instanceOffsetData, const std::vector<glm::vec3>& instanceColorData, const std::vector<float>& instancedScaleData) {
     indexCount = static_cast<int>(Tindices.size());
     instanceCount = static_cast<int>(instanceOffsetData.size());
 
@@ -39,6 +39,15 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
     glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
     glEnableVertexAttribArray(3);
     glVertexAttribDivisor(3, 1);
+
+    // Instanced Scale VBO
+    glGenBuffers(1, &instancedScaleVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instancedScaleVBO);
+    glBufferData(GL_ARRAY_BUFFER, instancedScaleData.size() * sizeof(float), instancedScaleData.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(4, 1, GL_FLOAT, GL_FALSE, sizeof(float), (void*)0);
+    glEnableVertexAttribArray(4);
+    glVertexAttribDivisor(4, 1);
 
     // Genetate, Bind and add data to EBO
     glGenBuffers(1, &EBO);

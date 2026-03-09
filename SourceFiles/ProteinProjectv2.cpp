@@ -102,7 +102,7 @@ int main()
     GenerateCylinderValues gcv;
     FileParserPDB fpp;
 
-    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector);
+    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
     //Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
     Shader myShader("ShaderFiles/ShaderVertex.vert", "ShaderFiles/ShaderFragment.frag");
     Camera myCamera;
