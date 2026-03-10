@@ -75,7 +75,9 @@ int main()
     // Adding the Debugger from Learn OpenGL
     //EnableOpenGLDebugging();
 
-    //glEnable(GL_CULL_FACE);     // Enable culling
+    glEnable(GL_CULL_FACE);     // Enable culling
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
 
 
     // Initialize IMGUI
@@ -102,7 +104,7 @@ int main()
     GenerateCylinderValues gcv;
     FileParserPDB fpp;
 
-    Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
+    //Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
     Mesh myMesh2(gcv.cylinderVertices, gcv.cylinderIndices);
     Shader SphereShader("ShaderFiles/SphereShaderVertex.vert", "ShaderFiles/SphereShaderFragment.frag");
     Shader CylinderShader("ShaderFiles/CylinderShaderVertex.vert", "ShaderFiles/CylinderShaderFragment.frag");
@@ -184,9 +186,9 @@ int main()
             }
         }
         
-        SphereShader.use();
+        /*SphereShader.use();
         myCamera.Use(display_w, display_h, SphereShader);
-        myMesh.Draw();
+        myMesh.Draw();*/
 
         CylinderShader.use();
         myCamera.Use(display_w, display_h, CylinderShader);
@@ -204,7 +206,7 @@ int main()
     }
 
     // clear OpenGL
-    myMesh.Cleanup();
+    //myMesh.Cleanup();
     myMesh2.Cleanup();
     SphereShader.cleanup();
     CylinderShader.cleanup();
