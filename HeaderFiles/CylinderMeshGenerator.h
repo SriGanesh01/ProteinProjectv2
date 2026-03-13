@@ -9,3 +9,12 @@ public:
 	std::vector<float> cylinderVertices;
 	std::vector<unsigned int> cylinderIndices;
 };
+
+class GenerateCylinderCurvedValues
+{
+public:
+	GenerateCylinderCurvedValues();
+
+	std::vector<float> cylinderVertices;
+	std::vector<unsigned int> cylinderIndices;
+};
