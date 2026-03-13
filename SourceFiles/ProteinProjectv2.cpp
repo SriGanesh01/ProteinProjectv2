@@ -101,12 +101,12 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
     GenerateSphereValues gsv;
-    GenerateCylinderFlatValues gcv;
-    GenerateCylinderCurvedValues gcvf;
+    GenerateCylinderFlatValues gcfv;
+    GenerateCylinderCurvedValues gccv;
     FileParserPDB fpp;
 
     //Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
-    Mesh myMesh2(gcvf.cylinderVertices, gcvf.cylinderIndices);
+    Mesh myMesh2(gcfv.cylinderVertices, gcfv.cylinderIndices);
     Shader SphereShader("ShaderFiles/SphereShaderVertex.vert", "ShaderFiles/SphereShaderFragment.frag");
     Shader CylinderShader("ShaderFiles/CylinderShaderVertex.vert", "ShaderFiles/CylinderShaderFragment.frag");
     Camera myCamera;
