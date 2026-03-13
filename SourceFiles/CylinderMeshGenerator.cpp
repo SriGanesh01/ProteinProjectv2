@@ -1,7 +1,7 @@
 
 #include "../HeaderFiles/CylinderMeshGenerator.h"
 
-GenerateCylinderValues::GenerateCylinderValues()
+GenerateCylinderFlatValues::GenerateCylinderFlatValues()
 {
     cylinderVertices = {
     -1.0f,-1.0f,-1.0f,

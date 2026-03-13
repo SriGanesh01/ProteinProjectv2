@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 
-class GenerateCylinderValues
+class GenerateCylinderFlatValues
 {
 public:
-	GenerateCylinderValues();
+	GenerateCylinderFlatValues();
 
 	std::vector<float> cylinderVertices;
 	std::vector<unsigned int> cylinderIndices;

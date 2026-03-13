@@ -101,7 +101,7 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Better to do twice (In and Out)
 
     GenerateSphereValues gsv;
-    GenerateCylinderValues gcv;
+    GenerateCylinderFlatValues gcv;
     FileParserPDB fpp;
 
     //Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
