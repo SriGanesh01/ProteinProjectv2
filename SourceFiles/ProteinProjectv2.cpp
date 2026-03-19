@@ -27,6 +27,8 @@
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
 
+bool ReGenerate = true;
+
 static bool mouseCaptured = false;
 
 //int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
@@ -103,10 +105,9 @@ int main()
     GenerateSphereValues gsv;
     GenerateCylinderFlatValues gcfv;
     GenerateCylinderCurvedValues gccv;
-    FileParserPDB fpp;
 
-    //Mesh myMesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
-    Mesh myMesh2(gcfv.cylinderVertices, gcfv.cylinderIndices);
+    Mesh* myMesh = nullptr;
+    Mesh* myMesh2 = nullptr;
     Shader SphereShader("ShaderFiles/SphereShaderVertex.vert", "ShaderFiles/SphereShaderFragment.frag");
     Shader CylinderShader("ShaderFiles/CylinderShaderVertex.vert", "ShaderFiles/CylinderShaderFragment.frag");
     Camera myCamera;
@@ -154,6 +155,29 @@ int main()
 
         DrawImGuiPanels();
 
+        if (ReGenerate)
+        {
+            if (myMesh)
+            {
+                myMesh->Cleanup();
+                delete myMesh;
+                myMesh = nullptr;
+            }
+
+            if (myMesh2)
+            {
+                myMesh2->Cleanup();
+                delete myMesh2;
+                myMesh2 = nullptr;
+            }
+
+            FileParserPDB fpp;
+            //myMesh = new Mesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
+            myMesh2 = new Mesh(gcfv.cylinderVertices, gcfv.cylinderIndices);
+
+
+            ReGenerate = false;
+        }
         
 
         // OpenGl Drawings
@@ -187,13 +211,23 @@ int main()
             }
         }
         
-        /*SphereShader.use();
-        myCamera.Use(display_w, display_h, SphereShader);
-        myMesh.Draw();*/
+        
+        if (myMesh)
+        {
+            SphereShader.use();
+            myCamera.Use(display_w, display_h, SphereShader);
+            myMesh -> Draw();
 
-        CylinderShader.use();
-        myCamera.Use(display_w, display_h, CylinderShader);
-        myMesh2.Draw();
+        }
+        
+        if (myMesh2)
+        {
+            CylinderShader.use();
+            myCamera.Use(display_w, display_h, CylinderShader);
+            myMesh2->Draw();
+
+        }
+
         //glDrawArrays(GL_TRIANGLES, 0, 3);
         
 
@@ -207,8 +241,20 @@ int main()
     }
 
     // clear OpenGL
-    //myMesh.Cleanup();
-    myMesh2.Cleanup();
+    if (myMesh)
+    {
+        myMesh -> Cleanup();
+        delete myMesh;
+        myMesh = nullptr;
+    }
+
+    if (myMesh2)
+    {
+        myMesh2->Cleanup();
+        delete myMesh2;
+        myMesh2 = nullptr;
+    }
+
     SphereShader.cleanup();
     CylinderShader.cleanup();
 
