@@ -1,6 +1,10 @@
 
+#include <curl/curl.h>
 
-void CallPDBAPI()
+#include "../HeaderFiles/PDB_API_Call.h"
+
+
+void CallPDBAPI(std::string PDBID)
 {
-
+	//curl -o "https ://files.rcsb.org/download/" + PDBID + ".pdb"
 }

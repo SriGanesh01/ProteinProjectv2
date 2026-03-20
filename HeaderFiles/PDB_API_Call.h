@@ -1,9 +1,11 @@
 #pragma once
 
+#include <string>
+
 class PDBAPICall
 {
 public:
-	PDBAPICall();
+	PDBAPICall(std::string PDBID);
 };
 
-void CallPDBAPI();
+void CallPDBAPI(std::string PDBID);
