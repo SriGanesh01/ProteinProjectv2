@@ -24,6 +24,8 @@
 #include "../HeaderFiles/CylinderMeshGenerator.h"
 #include "../HeaderFiles/FileParserPDB.h"
 
+#include "../HeaderFiles/PDB_API_Call.h"
+
 const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
 
@@ -123,6 +125,8 @@ int main()
     
     /*float rotation = 0.0f;
     double prevTime = glfwGetTime();*/
+
+    CallPDBAPI("2DX3");
 
     while (!glfwWindowShouldClose(window))
     {
