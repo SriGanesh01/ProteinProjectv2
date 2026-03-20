@@ -27,13 +27,9 @@ void CallPDBAPI(std::string PDBID)
 
 		if (result != CURLE_OK)
 		{
-			std::cout << PDB_Download_URL << std::endl;
-			std::cout << curl << std::endl;
-			std::cout << result << std::endl;
-			std::cout << "No" << std::endl;
+			std::cout << "File Not Found" << std::endl;
 		}
-		else {
-			std::cout << "Ok" << std::endl;
-		}
+
+		curl_easy_cleanup(curl);
 	}
 }
