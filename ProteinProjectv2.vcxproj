@@ -146,6 +146,7 @@
     <ClCompile Include="SourceFiles\main_imgui.cpp" />
     <ClCompile Include="SourceFiles\Mesh.cpp" />
     <ClCompile Include="SourceFiles\OpenGLDebugger.cpp" />
+    <ClCompile Include="SourceFiles\PDB_API_Call.cpp" />
     <ClCompile Include="SourceFiles\ProteinProjectv2.cpp" />
     <ClCompile Include="SourceFiles\Shader.cpp" />
     <ClCompile Include="SourceFiles\SphereMeshGenerator.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="HeaderFiles\main_imgui.h" />
     <ClInclude Include="HeaderFiles\Mesh.h" />
     <ClInclude Include="HeaderFiles\OpenGLDebugger.h" />
+    <ClInclude Include="HeaderFiles\PDB_API_Call.h" />
     <ClInclude Include="HeaderFiles\Shader.h" />
     <ClInclude Include="HeaderFiles\SphereMeshGenerator.h" />
   </ItemGroup>

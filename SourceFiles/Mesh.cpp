@@ -84,8 +84,8 @@ Mesh::Mesh(const std::vector<float>& Tvertices, const std::vector<unsigned int>&
 
 void Mesh::Draw() {
     glBindVertexArray(VAO); // Bind here instead of outside if vertex changes often. Bind at both places. Better Practice
-    //glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, instanceCount);
-    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
+    glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0, instanceCount);
+    //glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, 0);
 }
 
 void Mesh::Cleanup() {

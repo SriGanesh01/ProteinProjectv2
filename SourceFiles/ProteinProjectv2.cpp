@@ -172,8 +172,8 @@ int main()
             }
 
             FileParserPDB fpp;
-            //myMesh = new Mesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
-            myMesh2 = new Mesh(gcfv.cylinderVertices, gcfv.cylinderIndices);
+            myMesh = new Mesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
+            //myMesh2 = new Mesh(gcfv.cylinderVertices, gcfv.cylinderIndices);
 
 
             ReGenerate = false;
