@@ -4,6 +4,20 @@
 
 #include "../HeaderFiles/PDB_API_Call.h"
 
+size_t WriteToPDBFile(char* buffer, size_t itemSize, size_t numberOfItems, void* ignoreForNow_UsedToPassInAdditionalObjects) // Is a must to have all these arguements; This is a callback function btw;
+{
+	size_t bytes = itemSize * numberOfItems; // To verify that all data is processed correctly; Just have this thing;
+
+	std::cout << bytes << std::endl;
+
+	for (int i = 0; i < bytes; i++)
+	{
+		std::cout << buffer[i];
+	}
+
+	return bytes;
+}
+
 
 void CallPDBAPI(std::string PDBID)
 {
@@ -24,9 +38,10 @@ void CallPDBAPI(std::string PDBID)
 
 		// Set Options
 		curl_easy_setopt(curl, CURLOPT_URL, PDB_Download_URL.c_str());
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteToPDBFile); // Rewrites Defauult output behaviour; Which is to stdout to the terminal;
 
 		// Perform Actions
-		result = curl_easy_perform(curl);
+		CURLcode result = curl_easy_perform(curl);
 
 		if (result != CURLE_OK)
 		{
