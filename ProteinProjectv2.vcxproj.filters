@@ -51,6 +51,9 @@
     <ClCompile Include="SourceFiles\FileParserPDB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFiles\PDB_API_Call.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\AllExternalHeader.h">
@@ -83,6 +86,9 @@
     <ClInclude Include="HeaderFiles\FileParserPDB.h">
       <Filter>Header Files %28Default%29</Filter>
     </ClInclude>
+    <ClInclude Include="HeaderFiles\PDB_API_Call.h">
+      <Filter>Header Files %28Default%29</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ShaderFiles\SphereShaderVertex.vert">
@@ -94,7 +100,6 @@
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895.zip" />
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb.gz" />
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb\pdb2c0k.ent" />
-    <None Include="PDBDatas\pdb2c0k.ent" />
     <None Include="ShaderFiles\CylinderShaderFragment.frag" />
     <None Include="ShaderFiles\CylinderShaderVertex.vert" />
   </ItemGroup>

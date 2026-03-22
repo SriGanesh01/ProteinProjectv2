@@ -1,4 +1,5 @@
 
+#define _CRT_SECURE_NO_DEPRECATE
 #include <curl/curl.h>
 #include <iostream>
 #include <fstream>
@@ -31,6 +32,7 @@ void CallPDBAPI(std::string PDBID)
 
 	std::string PDB_Download_URL = "https://files.rcsb.org/download/" + PDBID + ".pdb";
 	std::string SavingFileName = PDBID + ".pdb";
+	std::string SavilgFileLocation = "./PDBDatas/" + SavingFileName;
 
 	CURL* curl;
 	CURLcode result;
@@ -39,7 +41,7 @@ void CallPDBAPI(std::string PDBID)
 
 	if (curl != NULL)
 	{
-		FILE* PDBFile = fopen(SavingFileName.c_str(), "wb");
+		FILE* PDBFile = fopen(SavilgFileLocation.c_str(), "wb");
 		// Set Options
 		curl_easy_setopt(curl, CURLOPT_URL, PDB_Download_URL.c_str());
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteToPDBFile); // Rewrites Defauult output behaviour; Which is to stdout to the terminal;

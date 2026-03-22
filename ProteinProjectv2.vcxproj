@@ -168,7 +168,6 @@
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895.zip" />
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb.gz" />
     <None Include="C:\Users\psrig\Downloads\batch-download-structures-1772949111895\2c0k.pdb\pdb2c0k.ent" />
-    <None Include="PDBDatas\pdb2c0k.ent" />
     <None Include="ShaderFiles\CylinderShaderFragment.frag" />
     <None Include="ShaderFiles\CylinderShaderVertex.vert" />
     <None Include="ShaderFiles\SphereShaderFragment.frag" />
