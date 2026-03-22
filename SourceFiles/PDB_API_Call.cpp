@@ -21,8 +21,11 @@ void CallPDBAPI(std::string PDBID)
 
 	if (curl != NULL)
 	{
+
+		// Set Options
 		curl_easy_setopt(curl, CURLOPT_URL, PDB_Download_URL.c_str());
 
+		// Perform Actions
 		result = curl_easy_perform(curl);
 
 		if (result != CURLE_OK)
