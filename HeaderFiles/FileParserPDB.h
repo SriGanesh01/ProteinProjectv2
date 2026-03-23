@@ -5,7 +5,7 @@
 class FileParserPDB {
 public:
 
-	FileParserPDB();
+	FileParserPDB(std::string PDBID);
 	std::vector<glm::vec3> LocationPointsVectors;
 	std::vector<glm::vec3> ColorPointsVector;
 	std::vector<float> WanderVallsRadiusVector;

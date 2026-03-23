@@ -6,9 +6,10 @@
 
 #include "../HeaderFiles/FileParserPDB.h"
 
-FileParserPDB::FileParserPDB()
+FileParserPDB::FileParserPDB(std::string PDBID)
 {
-	std::ifstream ParsedPDBfile("PDBDatas/pdb2c0k.ent");
+	std::string Path = "PDBDatas/" + PDBID + ".pdb";
+	std::ifstream ParsedPDBfile(Path);
 	if (!ParsedPDBfile.is_open())
 	{
 		std::cout << "FILE FAILED TO OPEN\n";

@@ -126,7 +126,9 @@ int main()
     /*float rotation = 0.0f;
     double prevTime = glfwGetTime();*/
 
-    CallPDBAPI("2DX3");
+    std::string currTh = "5LSN";
+    CallPDBAPI(currTh);
+
 
     while (!glfwWindowShouldClose(window))
     {
@@ -175,12 +177,22 @@ int main()
                 myMesh2 = nullptr;
             }
 
-            FileParserPDB fpp;
+
+            FileParserPDB fpp(currTh);
             myMesh = new Mesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
             //myMesh2 = new Mesh(gcfv.cylinderVertices, gcfv.cylinderIndices);
 
 
             ReGenerate = false;
+
+            //if (currTh != "2DX3")
+            //{
+            //    currTh = "2DX3";
+            //    ReGenerate = true;
+            //}
+            //else {
+            //    ReGenerate = false;
+            //}
         }
         
 
