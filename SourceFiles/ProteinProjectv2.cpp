@@ -126,8 +126,8 @@ int main()
     /*float rotation = 0.0f;
     double prevTime = glfwGetTime();*/
 
-    std::string currTh = "5LSN";
-    CallPDBAPI(currTh);
+    
+    
 
 
     while (!glfwWindowShouldClose(window))
@@ -176,6 +176,9 @@ int main()
                 delete myMesh2;
                 myMesh2 = nullptr;
             }
+
+            std::string currTh = "5LSN";
+            CallPDBAPI(currTh);
 
 
             FileParserPDB fpp(currTh);
