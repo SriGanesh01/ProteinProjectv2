@@ -23,9 +23,8 @@ void DrawImGuiPanels()
     }
     ImGui::End();
 
-    if (ImGui::Begin("Ae3")) {
-        ImGui::Text("Hello, World!");
-        ImGui::Text("This is some useful text.");
+    if (ImGui::Begin("PDB Selector")) {
+        ImGui::Text("Type a PDB ID");
 
     }
     ImGui::End();
