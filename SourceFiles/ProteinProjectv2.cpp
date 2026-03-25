@@ -30,6 +30,7 @@ const unsigned int Swidth = 1000;
 const unsigned int Sheight = 800;
 
 bool ReGenerate = true;
+std::string CurrentlyShownProteinPDBID = "5SLN";
 
 static bool mouseCaptured = false;
 
@@ -177,11 +178,11 @@ int main()
                 myMesh2 = nullptr;
             }
 
-            std::string currTh = "5LSN";
-            CallPDBAPI(currTh);
+            //std::string CurrentlyShownProteinPDBID = "5LSN";
+            CallPDBAPI(CurrentlyShownProteinPDBID);
 
 
-            FileParserPDB fpp(currTh);
+            FileParserPDB fpp(CurrentlyShownProteinPDBID);
             myMesh = new Mesh(gsv.sphereVertices, gsv.sphereIndices, fpp.LocationPointsVectors, fpp.ColorPointsVector, fpp.WanderVallsRadiusVector);
             //myMesh2 = new Mesh(gcfv.cylinderVertices, gcfv.cylinderIndices);
 

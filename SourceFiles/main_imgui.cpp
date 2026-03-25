@@ -2,6 +2,8 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include "../HeaderFiles/main_imgui.h"
+
 void DrawImGuiPanels()
 {
 
@@ -24,8 +26,21 @@ void DrawImGuiPanels()
     ImGui::End();
 
     if (ImGui::Begin("PDB Selector")) {
-        ImGui::Text("Type a PDB ID");
+        ImGui::Text("Type a PDB ID:");
 
+        // Buffers for ImGui InputText must be char arrays
+        static char pdbBuffer[10] = "5LSN";
+
+        // Input box: if user presses Enter, it returns true
+        if (ImGui::InputText("ID", pdbBuffer, sizeof(pdbBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
+            CurrentlyShownProteinPDBID = std::string(pdbBuffer);
+            ReGenerate = true;
+        }
+
+        if (ImGui::Button("Load Protein")) {
+            CurrentlyShownProteinPDBID = std::string(pdbBuffer);
+            ReGenerate = true;
+        }
     }
     ImGui::End();
 
