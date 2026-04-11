@@ -28,10 +28,8 @@ void DrawImGuiPanels()
     if (ImGui::Begin("PDB Selector")) {
         ImGui::Text("Type a PDB ID:");
 
-        // Buffers for ImGui InputText must be char arrays
         static char pdbBuffer[10] = "5LSN";
 
-        // Input box: if user presses Enter, it returns true
         if (ImGui::InputText("ID", pdbBuffer, sizeof(pdbBuffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
             CurrentlyShownProteinPDBID = std::string(pdbBuffer);
             ReGenerate = true;
