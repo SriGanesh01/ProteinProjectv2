@@ -141,6 +141,11 @@ int main()
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
+        if (display_w == 0 || display_h == 0)
+        {
+            glfwWaitEvents();
+            continue;
+        }
         //glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 
